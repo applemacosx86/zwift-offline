@@ -1,16 +1,11 @@
 services:
     zoffline:
-        image: zoffline/zoffline:latest
-        build:
-            context: .
-            dockerfile: Dockerfile
+        image: ghcr.io/fatsbrown/zoffline:latest
         container_name: zoffline
         environment:
-            - TZ=Europe/London
+            - TZ=Asia/Shanghai
         volumes:
             - ./storage/:/usr/src/app/zwift-offline/storage
-        # 不发布任何宿主端口：避免与 npm 的 80/443 冲突
-        # Zwift 客户端通过 hosts 指向下面的固定容器 IP，直连容器内 80/443/3024/3025
         networks:
             zwiftnet:
                 ipv4_address: 192.168.99.2
